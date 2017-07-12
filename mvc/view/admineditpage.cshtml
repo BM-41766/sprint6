@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "admineditpage";
+}
+<h2></h2>
+<html>
+<head>
+    <title></title>
+    <link href="../../Content/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12" style="background-color:#3b5998; height:35px;"><img src="../../Content/imgs/fbok.png" style="margin-left:100px; height:30px;" /><input type="text" style=" margin-top:10px;" placeholder="Search Facebook" /><input type="submit" class="icon-search" value="s" style="color:Silver; height:20px;" /><label style="margin-left:250px;">Welcome Admin</label></div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4" style="background-color:Silver;width:200px;height:600px;">
+                @*<img src= style="width:50px;" />*@@*<label style="margin-top:-40px; margin-left:55px;"> @ViewData["firstname"]@ViewData["lastname"] </label>*@<br />
+                <a href="#" id="profile">Userprofile</a><br />
+                <a href="#" id="pendingapproval">Pending Approval</a>
+            </div>
+
+            <div class="col-md-8" style="background-color: Silver;">
+                @*<input type="text" name="loginid" hidden />*@
+                <pre><b><h4>Profile <input type="text" name="fname" value="@ViewData["firstname"]" /><input type="text" name="sname" value="@ViewData["surname"]" /></h4></b>
+                <input type="submit" class="btn-primary" value="Suspend" /><input type="submit" class="btn-primary" value="Delete"/>
+                <label>Contact Information</label><hr />
+                <label>Mobilephones</label><input type="text" name="mobile" /><hr />
+                <label>Location</label><input type="text" name="location" /><hr />
+                <label>Emailaddress</label><input type="text" name="email" value="@ViewData["email"]" /><hr />
+                <label>Basic information</label><hr />
+                <label> Birth date</label><input type="text" name="dob" value="@ViewData["dob"]" /><hr />
+                <label>Birth year</label><input type="text" name="year" /><hr />
+                <label>Gender</label><input type="text" name="gender" value="@ViewData["gender"]" /><hr />
+                <label>Language</label><input type="text" name="language" /><input type="submit" class="btn-primary" value="Save" name="cmd" /><hr />
+           </pre>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

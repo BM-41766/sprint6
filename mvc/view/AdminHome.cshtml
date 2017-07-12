@@ -1,0 +1,112 @@
+﻿@{
+    ViewBag.Title = "AdminHome";
+}
+
+<html><head><title>
+    </title>
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+          <script src="~/content/script/Admin_View_Profile.js"></script>
+
+          <script src="~/content/script/Admin_Edit_User.js"></script>
+      
+          <script src="~/content/script/Admin_Delete.js"></script>
+          <script src="~/content/script/Admin_Suspnd.js"></script>
+
+          <script src="~/content/script/Admin_Approve_Btn.js"></script>
+         
+    <script>
+        $(document).ready(function () {
+            $("#pnding_Approval").click(function () {
+                var loginid1 = $(this).data("id");
+                // var loginid1 = $("#id").val();
+                alert("sahgdakj");
+                alert(loginid1);
+                $.ajax({
+                    type: 'GET',
+                    dataType: 'Json',
+                    url: 'Home/Aproval_pending',
+                    data: { loginid: loginid1 },
+                    success: function (data) {
+                        for (var x = 0; x < data.length; x++) {
+                            console.log("ID: " + data[x].loginid + " name: " + data[x].firstname + " picture: " + data[x].profilepic);
+                            var html = '<div style="background-color:white;width:400px;margin-left:150px;margin-top:10px;"><img src="' + data[x].profilepic + '"style="height:55px;width:30px;"/>' + '<label style="margin-top:-35px; margin-left:50px;">' + data[x].firstname + data[x].surname + '</label> <input type="button" value="Approve" id="Aprove" style="margin-left:135px;margin-top:-35px;" data-id="' + data[x].loginid + '"/><input type="button" value="Reject" id="reject" style="margin-left:135px;margin-top:-35px;"<br></div>';
+                            $(".Approval_pending").append(html);
+
+                        }
+
+                    }
+                })
+            })
+        });
+    </script>
+    </head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12" style="background-color:#3b5998; height:60px;">
+                
+                <img src="~/content/imgs/fbok.png" style="height:30px; width:30px; margin-left:50px;" /><input type="text" placeholder="search facebook" style="margin-top: 10px; margin-left:10px;" /> <button type="button" class="glyphicon glyphicon-search" style="margin-left:-5px;height:25px;" ></button>@*<input type="button" value="search" style="color:white;" /><span class="glyphicon glyphicon-search"></span>*@
+
+                @*<input type="text" id="txtsearch" name="X_firstname" style="width:200px; margin-left:70px; height:20px; margin-top:10px;" class="form-control " placeholder="Search Facebook" />@{Html.TextBox("X_firstname");} <input type="button" value="search" id="search" name="cmd1" style="margin-left:-20px;" />*@
+
+                <!--<button type="button" class="btn btn-default" style="margin-left:50px; margin-top:5px; width:150px;">!-->
+                <!--<input type ="text" placeholder="Search Facebook" /><span class="glyphicon glyphicon-search"></span>!-->
+                @*<img src="@ViewData["profilepic"]" style="margin-left:400px; margin-top:5px; width:50px;" /><input type="hidden" value="@ViewData["mainloginid"]" id="X_mainloginid" />
+                <font color="white"> @ViewData["firstname"]@ViewData["lastname"]</font>*@
+                
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" style="margin-left:500px;">
+                    welcome to admin
+                    <span class="caret"></span>
+                </button>
+                    <input type="button" value="Logout"  />
+                </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12" style="background-color:silver;height:600px;" >
+                
+                @*<img src="@ViewData["profilepic"]" style="width:50px;" /><label style="margin-top:-40px; margin-left:55px;"> @ViewData["firstname"]@ViewData["lastname"] </label><br />Edit profile<br />
+                <a href="#" id="aprvfrnd" class="frnd">ApproveFriend</a><br />
+                <a href="#" id="frndsrch">Search friend</a><br />
+                <a href="#" id="nwsfed">News Feed</a><br />
+                <a href="#" id="updatestus">Status Update</a><br />
+                <a href="#" id="editprfle">Edit profile</a>*@
+
+                <i class="glyphicon glyphicon-pencil" style="color:blue;"></i><a href="#" id="useredit">user Profile</a><br />
+                <i class="glyphicon glyphicon-pencil" style="color:blue;"></i><a href="#" id="pnding_Approval">Pending Approval</a>
+                
+                @*<pre style="width:450px; margin-left:300px;" hidden id="hde"></pre>*@<div class="usereditprofile" style="background-color:white; width:450px; margin-left:200px;"></div>
+                <div class="proflelist"></div>
+                <div class="Approval_pending"></div>
+            </div>
+
+           
+            </div>
+        </div>
+    
+          @*<div class="col-md-7" style="background-color: Silver; width: 450px; height:100px;">
+                <pre id="hide"><a href="#">Update Status</a>&nbsp;&nbsp;&nbsp;&nbsp;  <a href="#" id="lnkaddphoto">Add photos/video</a>&nbsp;&nbsp;&nbsp;&nbsp;   <a href="#">Writenotes</a><br />
+                <img src="@ViewData["profilepic"]" style="width:50px; margin-left:-110px;" class="profpic" /><input type="text" id="status" style="margin-left:20px;" placeholder="What's on your mind?" maxlength="140" /> <input type="button" id="btnpost" class="btn-primary" value="Post" style="margin-left:300px;" /> </pre><br />
+
+               <div class="col-md-7" style="background-color:Silver; width:450px;">
+                    <pre id="hide"><a href="#">Update Status</a>&nbsp;&nbsp;&nbsp;&nbsp;  <a href="#">Add photos/video</a>&nbsp;&nbsp;&nbsp;&nbsp;  <a href="#">Writenotes</a><br />
+                    <img src="@ViewData["profilepic"]" style="width:50px; margin-left:-110px;" /><input type="text" id="status" style="margin-left:20px;" placeholder="What's on your mind?" /> <input type="button" id="btnpost" class="btn-primary" value="Post" style="margin-left:300px;" /> </pre><br />
+                         </div>
+                <div class="posting" style="background-color:white;" hidden></div>
+                <div class="friend" style="background-color:white;" hidden></div>
+                <div id="dialog" style="display:none;" align="center" class="dialogue">
+                    <input type="file" id="filebrows" name="file" style="opacity: 0.0; filter: alpha(opacity=0); visibility:hidden" accept="image/png" onchange="document.getElementById('img').value = this.value" multiple /><input type="text" id="img" style="visibility:hidden" />
+                </div>
+            </div>
+
+            <div class="col-md-1" style="background-color:black; height:150px; width:120px;"><pre style="width:400px;">Your adds<div style="background-color:Blue;width:300px;height:475px; margin-left:50px;"></div></pre>
+        </div>
+    </div>
+    </div>*@
+    </body>
+</html>
